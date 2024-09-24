@@ -1,4 +1,4 @@
-# s3
+# @snewbie/capacitor-s3
 
 S3 Capacitor Plugin
 
@@ -28,12 +28,17 @@ const s3Instance = await S3.create({
 
 <docgen-index>
 
-* [`create(...)`](#create)
-* [`putString(...)`](#putstring)
-* [`getString(...)`](#getstring)
-* [`doesObjectExist(...)`](#doesobjectexist)
-* [`deleteObject(...)`](#deleteobject)
-* [Interfaces](#interfaces)
+- [@snewbie/capacitor-s3](#snewbiecapacitor-s3)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [API](#api)
+    - [create(...)](#create)
+    - [putString(...)](#putstring)
+    - [getString(...)](#getstring)
+    - [doesObjectExist(...)](#doesobjectexist)
+    - [deleteObject(...)](#deleteobject)
+    - [Interfaces](#interfaces)
+      - [BasicAWSCredentials](#basicawscredentials)
 
 </docgen-index>
 
