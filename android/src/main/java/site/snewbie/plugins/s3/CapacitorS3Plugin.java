@@ -1,4 +1,4 @@
-package site.snewbie.plugins.s3.s3;
+package site.snewbie.plugins.s3;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.model.ObjectMetadata;

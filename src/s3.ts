@@ -40,8 +40,15 @@ export class S3 implements S3Interface {
     private constructor(id: string) {
         this.id = id;
     }
+    
+    /**
+     * @deprecated Use AMap.create instead.
+     */
+    public create(_options: { credentials: BasicAWSCredentials, endpoint: string, bucketName: string }): Promise<S3> {
+        throw new Error('Method not implemented.');
+    }
 
-    async create(options: { credentials: BasicAWSCredentials, endpoint: string, bucketName: string }): Promise<S3> {
+    public static async create(options: { credentials: BasicAWSCredentials, endpoint: string, bucketName: string }): Promise<S3> {
         const id = Math.random().toString();
 
         const newS3 = new S3(id);
@@ -51,19 +58,19 @@ export class S3 implements S3Interface {
         return newS3;
     }
 
-    putString(args: { id: string; key: string; value: string; }): Promise<void> {
+    public putString(args: { id: string; key: string; value: string; }): Promise<void> {
         return CapacitorS3.putString({ ...args, id: this.id });
     }
 
-    getString(args: { id: string; key: string; }): Promise<string> {
+    public getString(args: { id: string; key: string; }): Promise<string> {
         return CapacitorS3.getString({ ...args, id: this.id });
     }
 
-    doesObjectExist(args: { id: string; key: string; }): Promise<boolean> {
+    public doesObjectExist(args: { id: string; key: string; }): Promise<boolean> {
         return CapacitorS3.doesObjectExist({ ...args, id: this.id });
     }
 
-    deleteObject(args: { id: string; key: string; }): Promise<void> {
+    public deleteObject(args: { id: string; key: string; }): Promise<void> {
         return CapacitorS3.deleteObject({ ...args, id: this.id });
     }
 

@@ -5,8 +5,23 @@ S3 Capacitor Plugin
 ## Install
 
 ```bash
-npm install s3
+npm install @snewbie/capacitor-s3
 npx cap sync
+```
+
+## Usage
+
+```typescript
+import { S3 } from '@snewbie/capacitor-s3';
+
+const s3Instance = await S3.create({
+  credentials: {
+    accessKey: 'my-key',
+    secretKey: 'my-secret',
+  },
+  endpoint: 'https://s3.example.com',
+  bucketName: 'my-bucket',
+});
 ```
 
 ## API
@@ -28,7 +43,7 @@ npx cap sync
 ### create(...)
 
 ```typescript
-create(args: { credentials: BasicAWSCredentials; endpoint: string; bucketName: string; }) => any
+create(args: { credentials: BasicAWSCredentials; endpoint: string; bucketName: string; }) => Promise<S3>
 ```
 
 创建 S3 实例。
@@ -37,7 +52,7 @@ create(args: { credentials: BasicAWSCredentials; endpoint: string; bucketName: s
 | ---------- | --------------------------------------------------------------------------------------------------------------------------- |
 | **`args`** | <code>{ credentials: <a href="#basicawscredentials">BasicAWSCredentials</a>; endpoint: string; bucketName: string; }</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;S3&gt;</code>
 
 **Since:** 0.0.1
 
@@ -47,7 +62,7 @@ create(args: { credentials: BasicAWSCredentials; endpoint: string; bucketName: s
 ### putString(...)
 
 ```typescript
-putString(args: { key: string; value: string; }) => any
+putString(args: { key: string; value: string; }) => Promise<void>
 ```
 
 将字符串上传到 S3。
@@ -55,8 +70,6 @@ putString(args: { key: string; value: string; }) => any
 | Param      | Type                                         |
 | ---------- | -------------------------------------------- |
 | **`args`** | <code>{ key: string; value: string; }</code> |
-
-**Returns:** <code>any</code>
 
 **Since:** 0.0.1
 
@@ -66,7 +79,7 @@ putString(args: { key: string; value: string; }) => any
 ### getString(...)
 
 ```typescript
-getString(args: { key: string; }) => any
+getString(args: { key: string; }) => Promise<string>
 ```
 
 从 S3 获取字符串。
@@ -75,7 +88,7 @@ getString(args: { key: string; }) => any
 | ---------- | ----------------------------- |
 | **`args`** | <code>{ key: string; }</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;string&gt;</code>
 
 **Since:** 0.0.1
 
@@ -85,7 +98,7 @@ getString(args: { key: string; }) => any
 ### doesObjectExist(...)
 
 ```typescript
-doesObjectExist(args: { key: string; }) => any
+doesObjectExist(args: { key: string; }) => Promise<boolean>
 ```
 
 检查对象是否存在。
@@ -94,7 +107,7 @@ doesObjectExist(args: { key: string; }) => any
 | ---------- | ----------------------------- |
 | **`args`** | <code>{ key: string; }</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;boolean&gt;</code>
 
 **Since:** 0.0.1
 
@@ -104,7 +117,7 @@ doesObjectExist(args: { key: string; }) => any
 ### deleteObject(...)
 
 ```typescript
-deleteObject(args: { key: string; }) => any
+deleteObject(args: { key: string; }) => Promise<void>
 ```
 
 删除对象。
@@ -112,8 +125,6 @@ deleteObject(args: { key: string; }) => any
 | Param      | Type                          |
 | ---------- | ----------------------------- |
 | **`args`** | <code>{ key: string; }</code> |
-
-**Returns:** <code>any</code>
 
 **Since:** 0.0.1
 
