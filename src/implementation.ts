@@ -1,7 +1,7 @@
 import { registerPlugin } from '@capacitor/core';
 import type { CreateS3Args } from './definitions';
 
-export const CapacitorS3 = registerPlugin<S3Plugin>('S3');
+export const CapacitorS3 = registerPlugin<S3Plugin>('CapacitorS3');
 
 export interface S3Plugin {
     create(options: CreateS3Args): Promise<void>;

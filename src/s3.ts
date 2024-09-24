@@ -40,7 +40,7 @@ export class S3 implements S3Interface {
     private constructor(id: string) {
         this.id = id;
     }
-    
+
     /**
      * @deprecated Use AMap.create instead.
      */
@@ -58,19 +58,19 @@ export class S3 implements S3Interface {
         return newS3;
     }
 
-    public putString(args: { id: string; key: string; value: string; }): Promise<void> {
+    public putString(args: { key: string; value: string; }): Promise<void> {
         return CapacitorS3.putString({ ...args, id: this.id });
     }
 
-    public getString(args: { id: string; key: string; }): Promise<string> {
+    public getString(args: { key: string; }): Promise<string> {
         return CapacitorS3.getString({ ...args, id: this.id });
     }
 
-    public doesObjectExist(args: { id: string; key: string; }): Promise<boolean> {
+    public doesObjectExist(args: { key: string; }): Promise<boolean> {
         return CapacitorS3.doesObjectExist({ ...args, id: this.id });
     }
 
-    public deleteObject(args: { id: string; key: string; }): Promise<void> {
+    public deleteObject(args: { key: string; }): Promise<void> {
         return CapacitorS3.deleteObject({ ...args, id: this.id });
     }
 
