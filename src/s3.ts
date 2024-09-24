@@ -1,4 +1,4 @@
-import { BasicAWSCredentials } from './definitions';
+import { BasicAWSCredentials, PutStringResult } from './definitions';
 import { CapacitorS3 } from './implementation';
 
 export interface S3Interface {
@@ -12,7 +12,7 @@ export interface S3Interface {
      * 将字符串上传到 S3。
      * @since 0.0.1
      */
-    putString(args: { key: string, value: string }): Promise<void>;
+    putString(args: { key: string, value: string }): Promise<PutStringResult>;
     /**
      * 从 S3 获取字符串。
      * @since 0.0.1
@@ -58,16 +58,30 @@ export class S3 implements S3Interface {
         return newS3;
     }
 
-    public putString(args: { key: string; value: string; }): Promise<void> {
+    public putString(args: { key: string; value: string; }): Promise<PutStringResult> {
         return CapacitorS3.putString({ ...args, id: this.id });
     }
 
     public getString(args: { key: string; }): Promise<string> {
-        return CapacitorS3.getString({ ...args, id: this.id });
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await CapacitorS3.getString({ ...args, id: this.id })
+                resolve(result.value);
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 
     public doesObjectExist(args: { key: string; }): Promise<boolean> {
-        return CapacitorS3.doesObjectExist({ ...args, id: this.id });
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await CapacitorS3.doesObjectExist({ ...args, id: this.id })
+                resolve(result.exists);
+            } catch (error) {
+                reject(error);
+            }
+        });
     }
 
     public deleteObject(args: { key: string; }): Promise<void> {
